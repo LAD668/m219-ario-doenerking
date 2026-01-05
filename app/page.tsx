@@ -12,7 +12,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="glass-card p-12 mb-8">
             <h1 className="mb-6">
-              Willkommen bei Einstieg mit R
+              Willkommen beim Einstieg mit R
             </h1>
             <p className="text-large mb-8 max-w-2xl mx-auto">
               Deine Lernplattform für die Ausbildung zum Entwickler Digitales Business EFZ
