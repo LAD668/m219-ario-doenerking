@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { learningModules } from '@/lib/data'
 import {
@@ -16,7 +16,7 @@ import ProgressIndicator from '@/components/ui/ProgressIndicator'
 import Button from '@/components/ui/Button'
 import ReactMarkdown from 'react-markdown'
 
-export default function LerninhaltePage() {
+function LerninhaltePageContent() {
   const searchParams = useSearchParams()
   const moduleId = searchParams.get('module')
   const [progress, setProgress] = useState<ReturnType<typeof initializeProgress> | null>(null)
@@ -40,9 +40,9 @@ export default function LerninhaltePage() {
     
     // Set initial module
     if (moduleId) {
-      const module = learningModules.find((m) => m.id === moduleId)
-      if (module) {
-        setSelectedModule(module)
+      const moduleData = learningModules.find((m) => m.id === moduleId)
+      if (moduleData) {
+        setSelectedModule(moduleData)
       } else {
         setSelectedModule(getFirstAccessibleModule())
       }
@@ -54,11 +54,12 @@ export default function LerninhaltePage() {
   useEffect(() => {
     // Update selected module when URL changes
     if (moduleId) {
-      const module = learningModules.find((m) => m.id === moduleId)
-      if (module) {
-        setSelectedModule(module)
+      const moduleData = learningModules.find((m) => m.id === moduleId)
+      if (moduleData) {
+        setSelectedModule(moduleData)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [moduleId])
 
   // Mark content as viewed when module is displayed
@@ -242,6 +243,14 @@ export default function LerninhaltePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LerninhaltePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Lade...</div>}>
+      <LerninhaltePageContent />
+    </Suspense>
   )
 }
 

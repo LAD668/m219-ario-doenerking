@@ -9,6 +9,7 @@ import {
   isModuleAccessible,
   unlockAllModules,
   ModuleState,
+  type LearningPathProgress,
 } from '@/lib/learningPath'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'

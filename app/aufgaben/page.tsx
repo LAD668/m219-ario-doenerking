@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { challenges, learningModules, validateCodeSolution } from '@/lib/data'
 import {
@@ -13,7 +13,7 @@ import Card from '@/components/ui/Card'
 import CodeEditor from '@/components/ui/CodeEditor'
 import Button from '@/components/ui/Button'
 
-export default function AufgabenPage() {
+function AufgabenPageContent() {
   const searchParams = useSearchParams()
   const moduleId = searchParams.get('module')
   const [progress, setProgress] = useState<ReturnType<typeof initializeProgress> | null>(null)
@@ -42,7 +42,7 @@ export default function AufgabenPage() {
     if (mounted && moduleId && accessibleChallenges.length > 0 && !selectedChallenge) {
       setSelectedChallenge(accessibleChallenges[0].id)
     }
-  }, [mounted, moduleId, accessibleChallenges.length, selectedChallenge])
+  }, [mounted, moduleId, accessibleChallenges, selectedChallenge])
 
   const handleCodeSubmit = async (challengeId: string, code: string): Promise<{ success: boolean; message: string }> => {
     const challenge = challenges.find((c) => c.id === challengeId)
@@ -437,5 +437,13 @@ export default function AufgabenPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AufgabenPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Lade...</div>}>
+      <AufgabenPageContent />
+    </Suspense>
   )
 }

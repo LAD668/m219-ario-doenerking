@@ -46,7 +46,7 @@ export default function HomePage() {
                   Für wen ist diese Ausbildung?
                 </h3>
                 <p className="text-grey-700">
-                  Diese Plattform richtet sich an Auszubildende im Bereich "Entwickler Digitales Business EFZ (EDB)" ab dem ersten Lehrjahr. Keine Vorkenntnisse im Programmieren erforderlich.
+                  Diese Plattform richtet sich an Auszubildende im Bereich &quot;Entwickler Digitales Business EFZ (EDB)&quot; ab dem ersten Lehrjahr. Keine Vorkenntnisse im Programmieren erforderlich.
                 </p>
               </div>
             </Card>
