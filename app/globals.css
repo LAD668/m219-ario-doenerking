@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-white antialiased;
+    font-feature-settings: 'kern' 1;
+    background: linear-gradient(180deg, #0a2540 0%, #0f4c81 50%, #e6f1fb 100%);
+    min-height: 100vh;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  h2 {
+    @apply text-3xl font-bold text-white leading-tight;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  h3 {
+    @apply text-2xl font-semibold text-white leading-snug;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  h4 {
+    @apply text-xl font-semibold text-white leading-snug;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  p {
+    @apply text-base text-white/90 leading-relaxed;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+
+  code {
+    @apply font-mono text-sm bg-grey-100 text-grey-900 px-1.5 py-0.5 rounded;
+  }
+
+  pre {
+    @apply font-mono text-sm bg-grey-900 text-grey-50 p-4 rounded-2xl overflow-x-auto;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-12 md:py-16;
+  }
+
+  .card-spacing {
+    @apply p-6;
+  }
+
+  .element-spacing {
+    @apply space-y-6;
+  }
+
+  .text-large {
+    @apply text-lg text-white/90 leading-relaxed;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+
+  .text-small {
+    @apply text-sm text-white/80 leading-normal;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+
+  .gradient-bg {
+    background: linear-gradient(180deg, #0a2540 0%, #0f4c81 50%, #e6f1fb 100%);
+  }
+
+  .glass-card {
+    @apply bg-white/25 backdrop-blur-xl rounded-3xl shadow-soft-lg border border-white/30;
+    transition: all 200ms ease-in-out;
+  }
+
+  .glass-card:hover {
+    @apply bg-white/30 shadow-soft-xl;
+    transform: translateY(-2px);
+  }
+
+  .glass-card-light {
+    @apply bg-white/20 backdrop-blur-lg rounded-2xl shadow-soft border border-white/20;
+    transition: all 200ms ease-in-out;
+  }
+
+  .glass-card-light:hover {
+    @apply bg-white/25 shadow-soft-lg;
+    transform: translateY(-1px);
+  }
+
+  .glass-nav {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-nav-item {
+    @apply bg-white/20 backdrop-blur-sm border border-white/10;
+    transition: all 200ms ease-in-out;
+  }
+
+  .glass-nav-item:hover {
+    @apply bg-white/30;
+    transform: translateY(-2px);
+  }
+
+  .glass-nav-item-active {
+    @apply bg-white/30 backdrop-blur-md border border-white/40 shadow-soft;
+  }
+
+  .text-on-glass {
+    @apply text-grey-900;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  .text-on-glass-light {
+    @apply text-white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
