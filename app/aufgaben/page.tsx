@@ -44,7 +44,7 @@ function AufgabenPageContent() {
     }
   }, [mounted, moduleId, accessibleChallenges, selectedChallenge])
 
-  const handleCodeSubmit = async (challengeId: string, code: string): Promise<{ success: boolean; message: string }> => {
+  const handleCodeSubmit = async (challengeId: string, code: string): Promise<{ success: boolean; message: string; correctSolution?: string }> => {
     const challenge = challenges.find((c) => c.id === challengeId)
     if (!challenge || !challenge.solution) {
       return {
@@ -68,6 +68,7 @@ function AufgabenPageContent() {
       return {
         success: false,
         message: 'Deine Lösung ist noch nicht korrekt. Versuche es erneut!',
+        correctSolution: challenge.solution, // Richtige Lösung zurückgeben
       }
     }
   }
@@ -314,6 +315,7 @@ function AufgabenPageContent() {
                               initialValue="" // Start with empty editor - students must write their own code
                               language={challenge.language || 'javascript'}
                               onSubmit={(code) => handleCodeSubmit(challenge.id, code)}
+                              exampleCode={challenge.solution} // Beispiel-Lösung oben anzeigen
                             />
                           </div>
                         )}

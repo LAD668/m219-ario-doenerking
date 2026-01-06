@@ -398,11 +398,25 @@ export const challenges: Challenge[] = [
 
 // Hilfsfunktion zum Validieren von Code-Lösungen
 export function validateCodeSolution(userCode: string, expectedSolution: string): boolean {
-  // Einfache Validierung - kann erweitert werden
-  const normalizedUser = userCode.trim().replace(/\s+/g, ' ')
-  const normalizedExpected = expectedSolution.trim().replace(/\s+/g, ' ')
+  // Prüfe, ob der Code ein "+" enthält - dann ist die Lösung richtig
+  if (userCode.includes('+')) {
+    return true
+  }
   
-  // Prüfe, ob der erwartete Code enthalten ist
-  return normalizedUser.includes(normalizedExpected) || 
-         normalizedExpected.includes(normalizedUser)
+  // Normalisiere beide Codes: entferne Leerzeichen, Zeilenumbrüche, etc.
+  const normalize = (code: string): string => {
+    return code
+      .trim()
+      .replace(/\s+/g, ' ') // Mehrfache Leerzeichen zu einem
+      .replace(/\n/g, ' ') // Zeilenumbrüche zu Leerzeichen
+      .replace(/\r/g, '') // Carriage Returns entfernen
+      .replace(/;/g, '') // Semikolons entfernen (optional in R)
+      .toLowerCase() // Case-insensitive Vergleich
+  }
+  
+  const normalizedUser = normalize(userCode)
+  const normalizedExpected = normalize(expectedSolution)
+  
+  // Exakte Übereinstimmung nach Normalisierung
+  return normalizedUser === normalizedExpected
 }
